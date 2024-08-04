@@ -73,12 +73,12 @@ def mesh_from_abaqus(inpfile_name, unit_dim=False):
             last_ln = ln
 
     # Convert the strings to numerical data
-    nodes = np.array([ind.split(',') for ind in nodal[1:]], dtype=np.float)
+    nodes = np.array([ind.split(',') for ind in nodal[1:]], dtype=np.float64)
 
     # Remove the node labels
     nodes = nodes[:, 1:]
 
-    con_mat = np.array([elm.split(',') for elm in connectivity[1:]], dtype=np.int)
+    con_mat = np.array([elm.split(',') for elm in connectivity[1:]], dtype=np.int32)
 
     # The node indices are to be zero indexed, remove labels
     con_mat = con_mat[:, 1:] - 1
@@ -193,8 +193,8 @@ def make_grid(c1x, c1y, c2x, c2y, ny, nx, elm):
     node_x = np.array(xnod) + c1x
     node_y = np.array(ynod) + c1y
 
-    con_matrix = np.zeros((nx * ny, 1), dtype=np.int)
-    con_matrix[:, 0] = np.arange(nx * ny, dtype=np.int)
+    con_matrix = np.zeros((nx * ny, 1), dtype=np.int32)
+    con_matrix[:, 0] = np.arange(nx * ny, dtype=np.int32)
 
     return con_matrix, node_x, node_y
 
@@ -338,7 +338,7 @@ class Mesher(object):
         reset_button = Button(but_ax2, 'Reset')
 
         rectangle = RectangleSelector(overview, line_select_callback,
-                                      drawtype='box', useblit=True,
+                                       useblit=True,
                                       button=[1, 3],  # don't use middle button
                                       minspanx=5, minspany=5,
                                       spancoords='pixels')

@@ -164,8 +164,8 @@ def map_coords_by_defgrad(xs, ys, F):
         The mapped coordinates in the same ordering as input
     """
     # Center around x and y
-    x_mid = np.float(xs.max()) / 2.
-    y_mid = np.float(ys.max()) / 2.
+    x_mid = np.float64(xs.max()) / 2.
+    y_mid = np.float64(ys.max()) / 2.
 
     xs_centered = xs - x_mid
     ys_centered = ys - y_mid

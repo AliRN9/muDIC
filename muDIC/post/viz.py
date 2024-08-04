@@ -467,10 +467,10 @@ class Visualizer(object):
             self.logger.info("Saving plot to %s"%save_path)
             if not os.path.exists(os.path.dirname(save_path)):
                 os.makedirs(os.path.dirname(save_path))
-                plt.savefig(save_path)
+                plt.savefig(save_path,dpi=500)
             else:
-                plt.savefig(save_path)
-
+                plt.savefig(save_path,dpi=500)
+            plt.close()
 
 def ind_closest_below(value, list):
     ind = 0

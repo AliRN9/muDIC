@@ -72,10 +72,10 @@ def dots_speckle(size=(1000, 1000), n_dots=5500, dot_radius_max=40, dot_radius_m
     img = np.zeros((size_x, size_y))
 
     for i in range(n_dots):
-        pos_x = np.int(random.random() * size_x)
-        pos_y = np.int(random.random() * size_y)
+        pos_x = np.int32(random.random() * size_x)
+        pos_y = np.int32(random.random() * size_y)
 
-        radius = np.int(random.random() * (dot_radius_max - dot_radius_min) + dot_radius_min)
+        radius = np.int32(random.random() * (dot_radius_max - dot_radius_min) + dot_radius_min)
 
         img = insert_circle(img, (pos_x, pos_y), radius=radius, allow_overlap=allow_overlap)
     filtered = gaussian_filter(img, blur_sigma)
@@ -114,7 +114,7 @@ def harmonic_speckle(size=(1000, 1000), n_peaks_x=20):
     size_x, size_y = size
     xs, ys = np.meshgrid(np.arange(size_x), np.arange(size_y))
 
-    freq = np.pi * 2. * np.float(n_peaks_x) / size_x
+    freq = np.pi * 2. * np.float64(n_peaks_x) / size_x
     x_harm = np.sin(xs * freq)
     y_harm = np.sin(ys * freq)
 

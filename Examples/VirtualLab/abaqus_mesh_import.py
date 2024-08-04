@@ -67,7 +67,7 @@ results = dic_job.run()
 fields = dic.Fields(results)
 
 # Show a field
-viz = dic.Visualizer(fields,images=image_stack)
+viz = dic.Visualizer(fields, images=image_stack)
 
 # Uncomment the line below to see the results
 viz.show(field="displacement", component = (0,0), frame=-1)

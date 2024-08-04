@@ -12,7 +12,7 @@ class TestImageDeformer(TestCase):
         Deforms a image with a square by a given amount and checks the area of the square
         """
         tol = 1e-4
-        square = np.zeros((200, 200), dtype=np.float)
+        square = np.zeros((200, 200), dtype=np.float64)
         square[75:125, 75:125] = 1.
 
         undeformed_hole_area = np.sum(square)
@@ -36,7 +36,7 @@ class TestImageDeformer(TestCase):
         * Rotate 90 deg and subtract, should give a zero difference
         """
         tol = 1e-4
-        square = np.zeros((200, 200), dtype=np.float)
+        square = np.zeros((200, 200), dtype=np.float64)
         square[75:125, 75:125] = 1.
 
         theta = np.pi / 4.

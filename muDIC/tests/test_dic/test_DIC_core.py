@@ -94,14 +94,14 @@ class TestFullDICCore(TestCase):
 
         # Make empty matrix for storing deformation gradients
         F_correct_at_frame = np.zeros((n_frames, 2, 2))
-        F_correct_at_frame[0, :, :] = np.eye(2, dtype=np.float)
+        F_correct_at_frame[0, :, :] = np.eye(2, dtype=np.float64)
 
         print("F Correct:", F_correct)
 
         for i in range(n_frames - 1):
             F_correct_at_frame[i + 1] = np.dot(F_correct_at_frame[i], F_correct)
 
-        F_correct_deviatior = F_correct_at_frame - np.eye(2, dtype=np.float)[np.newaxis, :, :]
+        F_correct_deviatior = F_correct_at_frame - np.eye(2, dtype=np.float64)[np.newaxis, :, :]
 
         F11_abs_error = np.zeros((F11.shape[1], F11.shape[2], F11.shape[3]))
         F12_abs_error = np.zeros_like(F11_abs_error)
