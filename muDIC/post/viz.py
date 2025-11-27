@@ -1,5 +1,5 @@
 import logging, os
-
+import io
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.ndimage import map_coordinates
@@ -462,7 +462,7 @@ class Visualizer(object):
                                          self.fields.__settings__.mesh.ele, fvar[:, 0, 0].flatten())
 
         if web:
-            img_buffer = BytesIO()
+            img_buffer = io.BytesIO()
             plt.savefig(img_buffer, format='tiff', dpi=500)
             img_buffer.seek(0)
             plt.close()
