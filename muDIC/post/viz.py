@@ -415,7 +415,7 @@ class Visualizer(object):
             raise ValueError("No valid field name was specified")
         return xs, ys, fvar
 
-    def show(self, field="displacement", component=(0, 0), frame=0, quiverdisp=False, save_path=None, **kwargs):
+    def show(self, field="displacement", component=(0, 0), frame=0, quiverdisp=False, save_path=None, web=None, **kwargs):
         """
         Show the field variable
 
@@ -461,8 +461,15 @@ class Visualizer(object):
                 plt_unstructured_results(self.fields.__res__.xnodesT[:, frame], self.fields.__res__.ynodesT[:, frame],
                                          self.fields.__settings__.mesh.ele, fvar[:, 0, 0].flatten())
 
+        if web:
+            img_buffer = BytesIO()
+            plt.savefig(img_buffer, format='tiff', dpi=500)
+            img_buffer.seek(0)
+            plt.close()
+            return img_buffer.getvalue()
+
         if save_path is None:
-            plt.show()
+            return
         else:
             self.logger.info("Saving plot to %s"%save_path)
             if not os.path.exists(os.path.dirname(save_path)):
